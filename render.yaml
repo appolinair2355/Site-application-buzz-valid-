@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: baccarat-pro
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: bash start.sh
+    disk:
+      name: data
+      mountPath: /opt/render/project/src/data
+      sizeGB: 1
+    envVars:
+      - key: PORT
+        value: "10000"
+      - key: NODE_ENV
+        value: production
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: OLLAMA_URL
+        value: http://localhost:11434
+      - key: OLLAMA_DEFAULT_MODEL
+        value: phi3:mini
